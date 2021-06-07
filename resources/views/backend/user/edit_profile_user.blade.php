@@ -33,7 +33,7 @@
 							<div class="form-group">
 								<h5>E-mail <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input  type="text" name="email" class="form-control" value="{{$profile->email}}" required data-validation-required-message="Ce champ est obligatoire">
+									<input  type="text" name="email" class="form-control" value="{{$profile->email}}" disabled required data-validation-required-message="Ce champ est obligatoire">
 									 </div>
 							</div>
 							<div class="form-group">

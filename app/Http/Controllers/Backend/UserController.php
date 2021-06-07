@@ -66,6 +66,7 @@ class UserController extends Controller
 
     public function UserDelete($id){
          $data = User::find($id);
+        @unlink(public_path('upload_image/user_image/'.$data->image));
         $data->delete();
         $notification=['message'=>'Utilisateur supprimé avec succès',
                         'alert-type'=>'success'

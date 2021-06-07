@@ -33,7 +33,7 @@
 								<div class="controls">
 									<select name="usertype" id="select" disabled required class="form-control">
 										 
-										<option value="{{$profiles->usertype}}">{{$profile->usertype}}</option>
+										<option value="{{$profile->usertype}}">{{$profile->usertype}}</option>
 										 
 									</select>
 										 
