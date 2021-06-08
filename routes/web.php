@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 Use App\Http\Controllers\Backend\UserController;
 Use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\gestioneleve\StudentClassController;
+use App\Http\Controllers\Backend\gestioneleve\StudentYearController;
+use App\Http\Controllers\Backend\gestioneleve\StudentGroupeController;
+use App\Http\Controllers\Backend\gestioneleve\StudentShiftController;
+use App\Http\Controllers\Backend\gestioneleve\FeeCategoryController;
+use App\Http\Controllers\Backend\gestioneleve\FeeAmountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
 //logout route
-Route::get('admin/logout',[AdminController::class,'Logout'])->name('admin.logout');
+Route::get('admin/déconnecter',[AdminController::class,'Logout'])->name('admin.logout');
 //End logout route
 //user routes
 Route::prefix('utilisateurs')->group(function(){
@@ -43,6 +49,52 @@ Route::prefix('Profile')->group(function(){
     Route::post('/modificationprofile',[ProfileController::class,'ProfileUpdate'])->name('profile.update');
      Route::get('/motdepass',[ProfileController::class,'PasswordView'])->name('password.view');
     Route::post('/modificationpass',[ProfileController::class,'PasswordStore'])->name('password.store');
-    
 });
 //End user Profile routes
+
+//Student routes
+Route::prefix('Gestion')->group(function(){
+    Route::get('/eleve/classe/liste',[StudentClassController::class,'ViewClass'])->name('eleve.classe.view');
+    Route::get('/ajout/classe',[StudentClassController::class,'ClassAdd'])->name('classe.add');
+     Route::post('/ajouter',[StudentClassController::class,'ClassStore'])->name('class.store');
+       Route::get('/edition/{id}',[StudentClassController::class,'ClassEdit'])->name('classe.edit');
+        Route::post('/modifications/{id}',[StudentClassController::class,'ClassUpdate'])->name('classe.update');
+         Route::get('/suppression/{id}',[StudentClassController::class,'ClassDelete'])->name('classe.delete');
+         //Student routes year
+          Route::get('/eleve/age/liste',[StudentYearController::class,'ViewAge'])->name('eleve.age.view');
+          Route::get('/ajout/age',[StudentYearController::class,'AgeAdd'])->name('age.add');
+           Route::post('/ajouter/age',[StudentYearController::class,'AgeStore'])->name('age.store');
+            Route::get('/edition/age/{id}',[StudentYearController::class,'YearEdit'])->name('age.edit');
+             Route::post('/modification/age/{id}',[StudentYearController::class,'YearUpdate'])->name('age.update');
+              Route::get('/suppression/age/{id}',[StudentYearController::class,'YearDelete'])->name('age.delete'); 
+               //Student routes groupe
+          Route::get('/eleve/groupe/liste',[StudentGroupeController::class,'ViewGroupe'])->name('eleve.groupe.view');
+          Route::get('/ajout/groupe',[StudentGroupeController::class,'GroupeAdd'])->name('groupe.add');
+           Route::post('/ajouter/groupe',[StudentGroupeController::class,'GroupeStore'])->name('groupe.store');
+            Route::get('/edition/groupe/{id}',[StudentGroupeController::class,'GroupeEdit'])->name('groupe.edit');
+             Route::post('/modification/groupe/{id}',[StudentGroupeController::class,'GroupeUpdate'])->name('groupe.update');
+              Route::get('/suppression/groupe/{id}',[StudentGroupeController::class,'GroupeDelete'])->name('groupe.delete');
+               //Student routes shift
+          Route::get('/eleve/shift/liste',[StudentShiftController::class,'ViewShift'])->name('eleve.shift.view');
+          Route::get('/ajout/shift',[StudentShiftController::class,'ShiftAdd'])->name('shift.add');
+           Route::post('/ajouter/shift',[StudentShiftController::class,'ShiftStore'])->name('shift.store');
+            Route::get('/edition/shift/{id}',[StudentShiftController::class,'ShiftEdit'])->name('shift.edit');
+             Route::post('/modification/shift/{id}',[StudentShiftController::class,'ShiftUpdate'])->name('shift.update');
+              Route::get('/suppression/shift/{id}',[StudentShiftController::class,'ShiftDelete'])->name('shift.delete');
+              //Student fees
+                Route::get('/eleve/fee/liste',[FeeCategoryController::class,'ViewFee'])->name('eleve.fee.view');
+          Route::get('/ajout/fee',[FeeCategoryController::class,'FeeAdd'])->name('fee.add');
+           Route::post('/ajouter/fee',[FeeCategoryController::class,'FeeStore'])->name('fee.store');
+            Route::get('/edition/fee/{id}',[FeeCategoryController::class,'FeeEdit'])->name('fee.edit');
+             Route::post('/modification/fee/{id}',[FeeCategoryController::class,'FeeUpdate'])->name('fee.update');
+              Route::get('/suppression/fee/{id}',[FeeCategoryController::class,'FeeDelete'])->name('fee.delete');
+              //Student fees amount
+                Route::get('/eleve/amount/liste',[FeeAmountController::class,'ViewFeeAmount'])->name('eleve.amount.view');
+                Route::get('/ajout/amount',[FeeAmountController::class,'AmountAdd'])->name('amount.add');
+                 Route::post('/ajouter/amount',[FeeAmountController::class,'AmountStore'])->name('amount.store');
+                  Route::get('/edition/amount/{fee_category_id}',[FeeAmountController::class,'AmountEdit'])->name('amount.edit');
+                   Route::post('/modification/amount/{fee_category_id}',[FeeAmountController::class,'AmountUpdate'])->name('amount.update');
+                 Route::get('/suppression/amount/{id}',[FeeAmountController::class,'AmountDelete'])->name('amount.delete');
+
+});
+//End student routes

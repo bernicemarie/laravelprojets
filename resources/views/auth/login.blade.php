@@ -42,7 +42,8 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text bg-transparent text-white"><i class="ti-user"></i></span>
 										</div>
-										<input  name="email" type="text" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Votre compte">
+					             <input autofocus="email" required  name="email" type="text" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Votre compte">
+							
 									</div>
 								</div>
 								<div class="form-group">
@@ -50,7 +51,8 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text  bg-transparent text-white"><i class="ti-lock"></i></span>
 										</div>
-										<input  name="password" type="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Votre mot de pass">
+									<input required  name="password" type="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Votre mot de pass">
+
 									</div>
 								</div>
 								  <div class="row">

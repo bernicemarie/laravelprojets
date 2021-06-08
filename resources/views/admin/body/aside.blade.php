@@ -56,6 +56,23 @@ $route = Route::current()->getName();
             <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
           </ul>
         </li>
+        <li class="treeview {{($prefix =='/Gestion')?'active':''}}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Gestion des élèves</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('eleve.classe.view')}}"><i class="ti-more"></i>Liste des classes</a></li>
+            <li><a href="{{route('eleve.age.view')}}">><i class="ti-more"></i>Liste des ages</a></li>
+            <li><a href="{{route('eleve.groupe.view')}}">><i class="ti-more"></i>Liste des groupes</a></li>
+            <li><a href="{{route('eleve.shift.view')}}">><i class="ti-more"></i>Liste des Shift</a></li>
+            <li><a href="{{route('eleve.fee.view')}}">><i class="ti-more"></i> Fee Category</a></li>
+            <li><a href="{{route('eleve.amount.view')}}">><i class="ti-more"></i> Fee Category Amount</a></li>
+             
+          </ul>
+        </li>
 		
          
 		 
