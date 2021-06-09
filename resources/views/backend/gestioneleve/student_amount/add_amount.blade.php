@@ -137,11 +137,6 @@
 								<span class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i></span>
 							    <span class="btn btn-da btn-danger removeeventmore"><i class="fa fa-minus-circle"></i></span>
 							</div>
-							 
-							
-							
-							 
-							
 							
 							</div>
 

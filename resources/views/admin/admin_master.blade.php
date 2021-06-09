@@ -15,9 +15,7 @@
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{asset('backend/css/style.css')}}">
 	<link rel="stylesheet" href="{{asset('backend/css/skin_color.css')}}">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
-     
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
   </head>
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
@@ -123,6 +121,7 @@
   </script>
    <!-- End  Nice confimation modal with sweethalet -->
 
+   <!-- start  Nice message, its CSS is above-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
  @if(Session::has('message'))
@@ -146,6 +145,7 @@
  }
  @endif 
 </script>
+ <!-- End  Nice message -->
 
 
 

@@ -93,10 +93,17 @@ public function AmountAdd(){
        
        
         
+
+
     }
-    public function AmountDelete($id){
-         $data = FeeAmount::find($id);
-         $data->delete();
+
+    public function AmountDetails($fee_category_id){
+          $data['alldata']= FeeAmount:: where('fee_category_id',$fee_category_id)->orderBy('class_id','asc')->get();
+          
+           return view ('backend.gestioneleve.student_amount.details_amount',$data);
+    } 
+    public function AmountDelete($fee_category_id){
+       FeeAmount::where('fee_category_id',$fee_category_id)->delete();
          $notification=['message'=>'Suppression avec succès',
                         'alert-type'=>'success'
                          ];

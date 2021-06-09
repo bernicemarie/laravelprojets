@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\gestioneleve\StudentGroupeController;
 use App\Http\Controllers\Backend\gestioneleve\StudentShiftController;
 use App\Http\Controllers\Backend\gestioneleve\FeeCategoryController;
 use App\Http\Controllers\Backend\gestioneleve\FeeAmountController;
+use App\Http\Controllers\Backend\gestioneleve\ExamController;
+use App\Http\Controllers\Backend\gestioneleve\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +96,22 @@ Route::prefix('Gestion')->group(function(){
                  Route::post('/ajouter/amount',[FeeAmountController::class,'AmountStore'])->name('amount.store');
                   Route::get('/edition/amount/{fee_category_id}',[FeeAmountController::class,'AmountEdit'])->name('amount.edit');
                    Route::post('/modification/amount/{fee_category_id}',[FeeAmountController::class,'AmountUpdate'])->name('amount.update');
-                 Route::get('/suppression/amount/{id}',[FeeAmountController::class,'AmountDelete'])->name('amount.delete');
+                    Route::get('/modification/amount_details/{fee_category_id}',[FeeAmountController::class,'AmountDetails'])->name('amount.details');
+                 Route::get('/suppression/amount/{fee_category_id}',[FeeAmountController::class,'AmountDelete'])->name('amount.delete');
+                 //Student exam
+                Route::get('/eleve/exam/liste',[ExamController::class,'ViewExam'])->name('eleve.exam.view');
+                Route::get('/ajout/exam',[ExamController::class,'ExamAdd'])->name('exam.add');
+                 Route::post('/ajouter/exam',[ExamController::class,'ExamStore'])->name('exam.store');
+                  Route::get('/edition/exam/{id}',[ExamController::class,'ExamEdit'])->name('exam.edit');
+                   Route::post('/modification/exam/{id}',[ExamController::class,'ExamUpdate'])->name('exam.update');
+                 Route::get('/suppression/exam/{id}',[ExamController::class,'ExamDelete'])->name('exam.delete'); 
+                 //Student subject
+                Route::get('/eleve/matière/liste',[SubjectController::class,'ViewSubject'])->name('eleve.subject.view');
+                Route::get('/ajout/matière',[SubjectController::class,'SubjectAdd'])->name('subject.add');
+                 Route::post('/ajouter/matière',[SubjectController::class,'SubjectStore'])->name('subject.store');
+                  Route::get('/edition/matière/{id}',[SubjectController::class,'SubjectEdit'])->name('subject.edit');
+                   Route::post('/modification/matière/{id}',[SubjectController::class,'SubjectUpdate'])->name('subject.update');
+                 Route::get('/suppression/matière/{id}',[SubjectController::class,'SubjectDelete'])->name('subject.delete');
 
 });
 //End student routes

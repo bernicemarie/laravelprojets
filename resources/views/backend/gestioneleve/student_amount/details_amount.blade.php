@@ -32,26 +32,24 @@
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
+					<h4><strong>Fee Category : </strong>{{$alldata['0']['fee_category']['name']}}</h4>
 					<div class="table-responsive">
 					  <table id="example1" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
-						<thead>
+						<thead class="thead-light">
 							<tr>
                                 <th width=3%>N°</th>
-								<th >Fee Category</th>
-								<th width=3%>Actions</th>
+								<th >Nom Classe</th>
+								<th width=3%>Montant</th>
 							</tr>
 						</thead>
 						<tbody>
-							 @foreach($alldata as $key=>$amount)
+							 @foreach($alldata as $key=>$details)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td>{{$amount['fee_category']['name']}}</td>
+								<td>{{$details['student_class']['name']}}</td>
+								<td>{{$details->amount}}</td>
 								 
-								<td>
-                                    <a href="{{route('amount.edit',$amount->fee_category_id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('amount.details',$amount->fee_category_id)}}" class="btn btn-primary" id="edit">Details</a>
-                                    <a href="{{route('amount.delete',$amount->fee_category_id)}}" class="btn btn-danger" id="delete">Delete</a>
-                                </td>
+							 
 							</tr>
 							 @endforeach
 						</tbody>
