@@ -12,7 +12,7 @@ class UserController extends Controller
       $this->middleware('auth');
   }
     public function UserView(){
-       $data['allData']= User::all();
+       $data['allData']= User::where ('usertype','admin')->get();
         return view ('backend.user.view_user',$data);
     }
     public function UserAdd(){
@@ -31,10 +31,13 @@ class UserController extends Controller
         ]
     );
          $data = new User();
-         $data->usertype = $request->usertype;
+         $code = rand(0000,9999);
+         $data->usertype = 'Admin';
+         $data->role = $request->role;
          $data->email = $request->email;
          $data->name = $request->name;
-         $data->password = bcrypt($request->password);
+         $data->password = bcrypt($code);
+         $data->code = $code;
     
     /* $brand->user_id = Auth::user()->id; */
         $data->save();
@@ -51,10 +54,11 @@ class UserController extends Controller
     }
     public function UserUpdate(Request $request, $id){
          $data = User::find($id);
-         $data->usertype = $request->usertype;
+          
          $data->email = $request->email;
+         $data->role = $request->role;
          $data->name = $request->name;
-         $data->password = bcrypt($request->password);
+         
         $data->save();
         $notification=['message'=>'Utilisateur modifié avec succès',
                         'alert-type'=>'success'

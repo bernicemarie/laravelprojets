@@ -27,35 +27,34 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">La liste des utilisateurs</h3>
-                  <a href="{{route('user.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Ajouter un utilisateur</a>
+				  <h3 class="box-title">Les details</h3>
+                  <a href="{{route('assign.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Ajouter une note</a>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
+					<h4><strong>Classe: </strong>{{$alldata['0']['class_group']['name']}}</h4>
+					
 					<div class="table-responsive">
 					  <table id="example1" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
-						<thead>
+						<thead class="thead-light">
 							<tr>
                                 <th width=3%>N°</th>
-								<th >Nom</th>
-								<th >Email</th>
-								<th >Role</th>
-								<th >Code</th>
-								<th width=3%>Actions</th>
+								<th >Matière</th>
+								<th width=3%>Full Mark</th>
+								<th width=3%>Pass Mark</th>
+								<th width=3%>Subjective</th>
 							</tr>
 						</thead>
 						<tbody>
-							 @foreach($allData as $key=>$user)
+							 @foreach($alldata as $key=>$details)
 							<tr>
-								<td>{{$user->id}}</td>
-								<td>{{$user->name}}</td>
-								<td>{{$user->email}}</td>
-								<td>{{$user->role}}</td>
-								<td>{{$user->code}}</td>
-								<td>
-                                    <a href="{{route('user.edit',$user->id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('user.delete',$user->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
-                                </td>
+								<td>{{$key+1}}</td>
+								<td>{{$details['school_subject']['name']}}</td>
+								<td>{{$details->full_mark}}</td>
+								<td>{{$details->pass_mark}}</td>
+								<td>{{$details->subjective_mark}}</td>
+								 
+							 
 							</tr>
 							 @endforeach
 						</tbody>

@@ -39,18 +39,21 @@
                                 <th width=3%>N°</th>
 								<th >Nom Classe</th>
 								<th width=3%>Actions</th>
+								 
 							</tr>
 						</thead>
 						<tbody>
 							 @foreach($alldata as $key=>$assign)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td>{{$assign->class_id}}</td>
+								<td>{{$assign['class_group']['name']}}</td>
+								 
+								 
 								 
 								<td>
-                                    <a href="{{route('amount.edit',$assign->id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('amount.details',$assign->id)}}" class="btn btn-primary" id="edit">Details</a>
-                                    <a href="{{route('amount.delete',$assign->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                    <a href="{{route('assign.edit',$assign->class_id)}}" class="btn btn-info" id="edit">Editer</a>
+                                    <a href="{{route('assign.details',$assign->class_id)}}" class="btn btn-primary" id="edit">Details</a>
+                                    <a href="{{route('assign.delete',$assign->class_id)}}" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
 							</tr>
 							 @endforeach

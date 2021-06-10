@@ -31,10 +31,10 @@
 								 <div class="form-group">
 								<h5>Rôle <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<select name="usertype" id="select" required class="form-control">
+									<select name="role" id="select" required class="form-control">
 										
-										<option value="Admin" {{($userData->usertype == "Admin" ? "selected": " ")}}>Admin</option>
-										<option value="User" {{($userData->usertype == "User" ? "selected": " ")}}>User</option>
+									<option value="admin" {{($userData->role == "Admin" ? "selected": " ")}}>Admin</option>
+										<option value="Operateur" {{($userData->role == "Operateur" ? "selected": " ")}}>Operateur</option>
 										
 										
 										 
@@ -54,12 +54,12 @@
 								<div class="controls">
 									<input  type="text" name="name" class="form-control" value="{{$userData->name}}" required data-validation-required-message="Ce champ est obligatoire"> </div>
 							</div> 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<h5>Mot de pass <span class="text-danger">*</span></h5>
 								<div class="controls">
 									<input  type="password" name="password" class="form-control" required data-validation-required-message="Ce champ est obligatoire"> 
 								</div>
-							</div>
+							</div> -->
 							</div>
 						</div>
 							 

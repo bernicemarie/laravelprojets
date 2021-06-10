@@ -27,8 +27,8 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">La liste des utilisateurs</h3>
-                  <a href="{{route('user.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Ajouter un utilisateur</a>
+				  <h3 class="box-title">La liste des désignations</h3>
+                  <a href="{{route('designation.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Ajouter une désignation</a>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -38,23 +38,19 @@
 							<tr>
                                 <th width=3%>N°</th>
 								<th >Nom</th>
-								<th >Email</th>
-								<th >Role</th>
-								<th >Code</th>
+								 
 								<th width=3%>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							 @foreach($allData as $key=>$user)
+							 @foreach($alldata as $key=>$designation)
 							<tr>
-								<td>{{$user->id}}</td>
-								<td>{{$user->name}}</td>
-								<td>{{$user->email}}</td>
-								<td>{{$user->role}}</td>
-								<td>{{$user->code}}</td>
+								<td>{{$key+1}}</td>
+								<td>{{$designation->name}}</td>
+								 
 								<td>
-                                    <a href="{{route('user.edit',$user->id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('user.delete',$user->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
+                                    <a href="{{route('designation.edit',$designation->id)}}" class="btn btn-info" id="edit">Editer</a>
+                                    <a href="{{route('designation.delete',$designation->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
                                 </td>
 							</tr>
 							 @endforeach

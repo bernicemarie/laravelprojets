@@ -27,29 +27,34 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">La liste des montants</h3>
-                  <a href="{{route('amount.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Ajouter un montant</a>
+				  <h3 class="box-title">La liste des élèves</h3>
+                  <a href="{{route('registration.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Ajouter un éléve</a>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<h4><strong>Fee Category : </strong>{{$alldata['0']['fee_category']['name']}}</h4>
 					<div class="table-responsive">
 					  <table id="example1" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
-						<thead class="thead-light">
+						<thead>
 							<tr>
                                 <th width=3%>N°</th>
-								<th >Nom Classe</th>
-								<th width=3%>Montant</th>
+								<th >Nom</th>
+								<th >N° ID</th>
+								 
+								<th width=3%>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							 @foreach($alldata as $key=>$details)
+							 @foreach($alldata as $key=>$value)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td>{{$details['student_class']['name']}}</td>
-								<td>{{$details->amount}}</td>
+								<td>{{$value->name}}</td>
+								<td>{{$value->class_id}}</td>
+								<td>{{$value->year_id}}</td>
 								 
-							 
+								<td>
+                                    <a href="{{route('subject.edit',$value->id)}}" class="btn btn-info" id="edit">Editer</a>
+                                    <a href="{{route('subject.delete',$value->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
+                                </td>
 							</tr>
 							 @endforeach
 						</tbody>

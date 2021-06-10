@@ -29,6 +29,7 @@ $route = Route::current()->getName();
 			<span>Tableau de bord</span>
           </a>
         </li>  
+        @if(Auth::user()->role=='Admin')
         <li class="treeview {{($prefix =='/utilisateurs')?'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
@@ -42,7 +43,7 @@ $route = Route::current()->getName();
             <li><a href="{{route('user.view')}}"><i class="ti-more"></i>Ajout utilisateur</a></li>
           </ul>
         </li> 
-		  
+		  @endif
         <li class="treeview {{($prefix =='/Profile')?'active':''}}">
           <a href="#">
             <i data-feather="mail"></i> <span>Profile utilisateur</span>
@@ -58,7 +59,7 @@ $route = Route::current()->getName();
         </li>
         <li class="treeview {{($prefix =='/Gestion')?'active':''}}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Gestion des élèves</span>
+            <i data-feather="mail"></i> <span>Ajout d'élements</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -73,25 +74,26 @@ $route = Route::current()->getName();
             <li><a href="{{route('eleve.exam.view')}}">><i class="ti-more"></i>Examen</a></li>
             <li><a href="{{route('eleve.subject.view')}}">><i class="ti-more"></i>Matières</a></li>
             <li><a href="{{route('eleve.assign.view')}}">><i class="ti-more"></i>Attribution des matières</a></li>
+            <li><a href="{{route('eleve.designation.view')}}">><i class="ti-more"></i>Désignation</a></li>
              
           </ul>
         </li>
 		
          
 		 
-        <li class="header nav-small-cap">Interface Utilisateur</li>
+        <li class="header nav-small-cap">Gestion des élèves</li>
 		  
-        <li class="treeview">
+        <li class="treeview {{($prefix =='/Enregistrement')?'active':''}}">
           <a href="#">
             <i data-feather="grid"></i>
-            <span>Components</span>
+            <span>Gestion des élèves</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
+            <li><a href="{{route('registration.view')}}"><i class="ti-more"></i>Enregistement</a></li>
+            <li><a href="components_badges.html"><i class="ti-more"></i>Promotion</a></li>
              
           </ul>
         </li>

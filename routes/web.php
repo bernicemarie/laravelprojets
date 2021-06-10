@@ -13,6 +13,8 @@ use App\Http\Controllers\Backend\gestioneleve\FeeAmountController;
 use App\Http\Controllers\Backend\gestioneleve\ExamController;
 use App\Http\Controllers\Backend\gestioneleve\SubjectController;
 use App\Http\Controllers\Backend\gestioneleve\AssignController;
+use App\Http\Controllers\Backend\gestioneleve\DesignationController;
+use App\Http\Controllers\Backend\eleveregistration\StudentRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,10 +119,25 @@ Route::prefix('Gestion')->group(function(){
                 Route::get('/eleve/assign/liste',[AssignController::class,'ViewAssign'])->name('eleve.assign.view');
                 Route::get('/ajout/assign',[AssignController::class,'AssignAdd'])->name('assign.add');
                  Route::post('/ajouter/assign',[AssignController::class,'AssignStore'])->name('assign.store');
-                  Route::get('/edition/amount/{fee_category_id}',[FeeAmountController::class,'AmountEdit'])->name('amount.edit');
-                   Route::post('/modification/amount/{fee_category_id}',[FeeAmountController::class,'AmountUpdate'])->name('amount.update');
-                    Route::get('/modification/amount_details/{fee_category_id}',[FeeAmountController::class,'AmountDetails'])->name('amount.details');
-                 Route::get('/suppression/amount/{fee_category_id}',[FeeAmountController::class,'AmountDelete'])->name('amount.delete');
+                  Route::get('/edition/assign/{class_id}',[AssignController::class,'AssignEdit'])->name('assign.edit');
+                   Route::post('/modification/assign/{class_id}',[AssignController::class,'AssignUpdate'])->name('assign.update');
+                    Route::get('/modification/assign_details/{class_id}',[AssignController::class,'AssignDetails'])->name('assign.details');
+                 Route::get('/suppression/assign/{class_id}',[AssignController::class,'AssignDelete'])->name('assign.delete'); 
+                 //Student designation
+                Route::get('/eleve/designation/liste',[DesignationController::class,'ViewDesignation'])->name('eleve.designation.view');
+                Route::get('/ajout/designation',[DesignationController::class,'DesignationAdd'])->name('designation.add');
+                 Route::post('/ajouter/designation',[DesignationController::class,'DesignationStore'])->name('designation.store');
+                  Route::get('/edition/designation/{id}',[DesignationController::class,'DesignationEdit'])->name('designation.edit');
+                   Route::post('/modification/designation/{id}',[DesignationController::class,'DesignationUpdate'])->name('designation.update');
+                 Route::get('/suppression/designation/{id}',[DesignationController::class,'DesignationDelete'])->name('designation.delete');
 
 });
 //End student routes
+
+//user Enregistrement routes
+Route::prefix('Enregistrement')->group(function(){
+    Route::get('/eleve/enregistrement/liste',[StudentRegistrationController::class,'RegistrationView'])->name('registration.view');
+     Route::get('/ajout/enregistrement',[StudentRegistrationController::class,'RegistrationAdd'])->name('registration.add');
+     
+});
+//End user Enregistrement routes
