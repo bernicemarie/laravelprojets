@@ -25,7 +25,6 @@ class ProfileController extends Controller
     public function ProfileUpdate(Request $request){
          $data = User::find(Auth::user()->id);
          $data->telephone = $request->telephone;
-         $data->email = $request->email;
          $data->name = $request->name;
          $data->adresse = $request->adresse;
          $data->sexe = $request->sexe;

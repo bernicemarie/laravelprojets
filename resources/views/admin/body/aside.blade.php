@@ -72,7 +72,7 @@ $route = Route::current()->getName();
             <li><a href="{{route('eleve.amount.view')}}">><i class="ti-more"></i> Fee Category Amount</a></li>
             <li><a href="{{route('eleve.exam.view')}}">><i class="ti-more"></i>Examen</a></li>
             <li><a href="{{route('eleve.subject.view')}}">><i class="ti-more"></i>Matières</a></li>
-            <li><a href="{{route('eleve.subject.view')}}">><i class="ti-more"></i>Attribution des matières</a></li>
+            <li><a href="{{route('eleve.assign.view')}}">><i class="ti-more"></i>Attribution des matières</a></li>
              
           </ul>
         </li>

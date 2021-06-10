@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\gestioneleve\FeeCategoryController;
 use App\Http\Controllers\Backend\gestioneleve\FeeAmountController;
 use App\Http\Controllers\Backend\gestioneleve\ExamController;
 use App\Http\Controllers\Backend\gestioneleve\SubjectController;
+use App\Http\Controllers\Backend\gestioneleve\AssignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,14 @@ Route::prefix('Gestion')->group(function(){
                   Route::get('/edition/matière/{id}',[SubjectController::class,'SubjectEdit'])->name('subject.edit');
                    Route::post('/modification/matière/{id}',[SubjectController::class,'SubjectUpdate'])->name('subject.update');
                  Route::get('/suppression/matière/{id}',[SubjectController::class,'SubjectDelete'])->name('subject.delete');
+                 //Student assign subject
+                Route::get('/eleve/assign/liste',[AssignController::class,'ViewAssign'])->name('eleve.assign.view');
+                Route::get('/ajout/assign',[AssignController::class,'AssignAdd'])->name('assign.add');
+                 Route::post('/ajouter/assign',[AssignController::class,'AssignStore'])->name('assign.store');
+                  Route::get('/edition/amount/{fee_category_id}',[FeeAmountController::class,'AmountEdit'])->name('amount.edit');
+                   Route::post('/modification/amount/{fee_category_id}',[FeeAmountController::class,'AmountUpdate'])->name('amount.update');
+                    Route::get('/modification/amount_details/{fee_category_id}',[FeeAmountController::class,'AmountDetails'])->name('amount.details');
+                 Route::get('/suppression/amount/{fee_category_id}',[FeeAmountController::class,'AmountDelete'])->name('amount.delete');
 
 });
 //End student routes
