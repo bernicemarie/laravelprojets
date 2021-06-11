@@ -136,8 +136,11 @@ Route::prefix('Gestion')->group(function(){
 
 //user Enregistrement routes
 Route::prefix('Enregistrement')->group(function(){
-    Route::get('/eleve/enregistrement/liste',[StudentRegistrationController::class,'RegistrationView'])->name('registration.view');
-     Route::get('/ajout/enregistrement',[StudentRegistrationController::class,'RegistrationAdd'])->name('registration.add');
+Route::get('/eleve/enregistrement/liste',[StudentRegistrationController::class,'RegistrationView'])->name('registration.view');
+ Route::get('/ajout/enregistrement',[StudentRegistrationController::class,'RegistrationAdd'])->name('registration.add');
+Route::post('/ajouter/enregistrement',[StudentRegistrationController::class,'RegistrationStore'])->name('registration.store');
+ Route::get('/suppression/enregistrement/{id}',[StudentRegistrationController::class,'RegistrationDelete'])->name('registration.delete');
+
      
 });
 //End user Enregistrement routes

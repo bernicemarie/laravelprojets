@@ -20,7 +20,7 @@
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
-					<form method="post" action="{{route('age.store')}}">
+					<form method="post" action="{{route('registration.store')}}" enctype="multipart/form-data">
 						@csrf
 					  
 						<div class="col-12">						
@@ -29,7 +29,7 @@
 							 <div class="row">
 							<div class="col-md-3">
 								  <div class="form-group">
-		<h5>Student Name <span class="text-danger">*</span></h5>
+		<h5>Nom Elève <span class="text-danger">*</span></h5>
 		<div class="controls">
 	 <input type="text" name="name" class="form-control" required="" > 
 	  </div>		 
@@ -37,7 +37,7 @@
 						     </div>
 						     <div class="col-md-3">
 								 <div class="form-group">
-		<h5>Father's Name <span class="text-danger">*</span></h5>
+		<h5>Père <span class="text-danger">*</span></h5>
 		<div class="controls">
 	 <input type="text" name="fname" class="form-control" required="" > 
 	  </div>		 
@@ -45,7 +45,7 @@
 						     </div>
 						     <div class="col-md-3">
 								 <div class="form-group">
-		<h5>Mother's Name <span class="text-danger">*</span></h5>
+		<h5>Mère <span class="text-danger">*</span></h5>
 		<div class="controls">
 	 <input type="text" name="mname" class="form-control" required=""> 
 	  </div>		 
@@ -66,7 +66,7 @@
 								 <div class="form-group">
 								<h5>Sexe<span class="text-danger">*</span></h5>
 								<div class="controls">
-									 <select name="gender" id="gender" required="" class="form-control">
+									 <select name="sexe" id="gender" required="" class="form-control">
 			<option value="" selected="" disabled="">Selectionner un sexe</option>
 			<option value="Homme">Homme</option>
 			<option value="Femme">Femme</option>
@@ -105,7 +105,7 @@
 								<h5>Shift<span class="text-danger">*</span></h5>
 								<div class="controls">
 									<select name="shift_id" id="select" required class="form-control">
-										<option value="">Selectionner un rôle</option>
+										<option value="">Selectionner un shift</option>
 										 @foreach($shiftdata as $key=> $value)
 										<option  value="{{$value->id}}">{{$value->name}}</option>
 										 @endforeach
@@ -133,7 +133,7 @@
 								<h5>Year<span class="text-danger">*</span></h5>
 								<div class="controls">
 									<select name="year_id" id="select" required class="form-control">
-										<option value="">Selectionner un rôle</option>
+										<option value="">Selectionner une année</option>
 										 @foreach($yeardata as $key=> $value)
 										<option  value="{{$value->id}}">{{$value->name}}</option>
 										 @endforeach
@@ -147,7 +147,7 @@
 								<h5>Groupe<span class="text-danger">*</span></h5>
 								<div class="controls">
 									<select name="groupe_id" id="select" required class="form-control">
-										<option value="">Selectionner un rôle</option>
+										<option value="">Selectionner un groupe</option>
 										 @foreach($studentgroupedata as $key=> $value)
 										<option  value="{{$value->id}}">{{$value->name}}</option>
 										 @endforeach

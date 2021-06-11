@@ -38,7 +38,9 @@
 							<tr>
                                 <th width=3%>N°</th>
 								<th >Nom</th>
-								<th >N° ID</th>
+								<th >Classe</th>
+								<th >Année</th>
+								
 								 
 								<th width=3%>Actions</th>
 							</tr>
@@ -47,13 +49,13 @@
 							 @foreach($alldata as $key=>$value)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td>{{$value->name}}</td>
+								<td>{{$value->student_id}}</td>
 								<td>{{$value->class_id}}</td>
 								<td>{{$value->year_id}}</td>
 								 
 								<td>
                                     <a href="{{route('subject.edit',$value->id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('subject.delete',$value->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
+                                    <a href="{{route('registration.delete',$value->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
                                 </td>
 							</tr>
 							 @endforeach
