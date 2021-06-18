@@ -52,12 +52,12 @@
 								<div class="controls">
 									<input  type="text" name="name" class="form-control" required data-validation-required-message="Ce champ est obligatoire"> </div>
 							</div> 
-							<!-- <div class="form-group">
+							 <div class="form-group">
 								<h5>Mot de pass <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input  type="password" name="password" class="form-control" required data-validation-required-message="Ce champ est obligatoire"> 
+									<input  type="password" name="password" class="form-control" required data-validation-required-message="Ce champ est obligatoire" placeholder="Le mot sera automatiquement assigné" disabled> 
 								</div>
-							</div> -->
+							</div> 
 							</div>
 						</div>
 							 

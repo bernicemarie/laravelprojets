@@ -46,7 +46,7 @@
 							 @foreach($alldata as $key=>$designation)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td>{{$designation->name}}</td>
+								<td>{{$designation['fee_category']['name']}}</td>
 								 
 								<td>
                                     <a href="{{route('designation.edit',$designation->id)}}" class="btn btn-info" id="edit">Editer</a>

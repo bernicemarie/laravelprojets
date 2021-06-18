@@ -12,7 +12,7 @@ class UserController extends Controller
       $this->middleware('auth');
   }
     public function UserView(){
-       $data['allData']= User::where ('usertype','admin')->get();
+       $data['allData']= User::where ('usertype','Admin')->get();
         return view ('backend.user.view_user',$data);
     }
     public function UserAdd(){
@@ -54,8 +54,9 @@ class UserController extends Controller
     }
     public function UserUpdate(Request $request, $id){
          $data = User::find($id);
-          
-         $data->email = $request->email;
+         $code = rand(0000,9999);
+         $data->password = bcrypt($code);
+         $data->code = $code;
          $data->role = $request->role;
          $data->name = $request->name;
          

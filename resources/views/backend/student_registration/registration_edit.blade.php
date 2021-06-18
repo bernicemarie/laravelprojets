@@ -31,7 +31,7 @@
 								  <div class="form-group">
 		<h5>Nom Elève <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="name" class="form-control" required="" > 
+	 <input  type="text" name="name" class="form-control" required="" value="{{$editData['registration_relation_user']['name']}}" > 
 	  </div>		 
 	  </div>
 						     </div>
@@ -39,7 +39,7 @@
 								 <div class="form-group">
 		<h5>Père <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="fname" class="form-control" required="" > 
+	 <input value="{{$editData['registration_relation_user']['fname']}}" type="text" name="fname" class="form-control" required="" > 
 	  </div>		 
 	  </div>
 						     </div>
@@ -47,7 +47,7 @@
 								 <div class="form-group">
 		<h5>Mère <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="mname" class="form-control" required=""> 
+	 <input value="{{$editData['registration_relation_user']['mname']}}" type="text" name="mname" class="form-control" required=""> 
 	  </div>		 
 	  </div>
 						     </div>
@@ -55,7 +55,7 @@
 								 <div class="form-group">
 		<h5>Téléphone<span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="telephone" class="form-control" required="" > 
+	 <input type="text" name="telephone" class="form-control" required="" value="{{$editData['registration_relation_user']['telephone']}}"> 
 	  </div>		 
 	  </div>  
 								  
@@ -68,8 +68,10 @@
 								<div class="controls">
 									 <select name="sexe" id="gender" required="" class="form-control">
 			<option value="" selected="" disabled="">Selectionner un sexe</option>
-			<option value="Homme">Homme</option>
-			<option value="Femme">Femme</option>
+			<option value="Homme" {{($editData['registration_relation_user']['sexe'] === 'Homme')? 'selected': ''}}>Homme</option>
+
+			<option value="Femme" {{($editData['registration_relation_user']['sexe'] == 'Femme')? 'selected': ''}}>Femme</option>
+			 
 			 
 		</select>
 								</div>
@@ -79,7 +81,7 @@
 								<div class="form-group">
 		<h5>Date de naissance<span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="date" name="dob" class="form-control" required="" > 
+	 <input type="date" name="dob" class="form-control" required="" value="{{$editData['registration_relation_user']['dob']}}" > 
 	  </div>		 
 	  </div>
 						     </div>
@@ -87,7 +89,7 @@
 								 <div class="form-group">
 		<h5>Discount <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="discount" class="form-control" required="" > 
+	 <input type="text" name="discount" class="form-control" required="" value="{{$editData['registration_relation_discount']['discount']}}"> 
 	  </div>		 
 	  </div>
 						     </div>
@@ -95,7 +97,7 @@
 								  <div class="form-group">
 		<h5>Adresse <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="adresse" class="form-control" required="" > 
+	 <input type="text" name="adresse" class="form-control" required="" value="{{$editData['registration_relation_user']['adresse']}}"> 
 	  </div>		 
 	  </div>
 						     </div> 
@@ -106,8 +108,8 @@
 								<div class="controls">
 									<select name="shift_id" id="select" required class="form-control">
 										<option value="">Selectionner un shift</option>
-										 @foreach($shiftdata as $key=> $value)
-										<option  value="{{$value->id}}">{{$value->name}}</option>
+										 @foreach($shifts as $key=> $value)
+										<option  value="{{$value->id}}" {{($editData->shift_id==$value->id? "selected":" ")}}>{{$value->name}}</option>
 										 @endforeach
 									</select>
 								</div>
@@ -119,8 +121,8 @@
 								<div class="controls">
 									<select name="class_id" id="select" required class="form-control">
 										<option value="">Selectionner un rôle</option>
-										 @foreach($classedata as $key=> $classe)
-										<option  value="{{$classe->id}}">{{$classe->name}}</option>
+										 @foreach($classes as $key=> $classe)
+										<option  value="{{$classe->id}}" {{($editData->class_id==$classe->id? "selected":" ")}}>{{$classe->name}}</option>
 										 @endforeach
 										 
 										 
@@ -134,8 +136,8 @@
 								<div class="controls">
 									<select name="year_id" id="select" required class="form-control">
 										<option value="">Selectionner une année</option>
-										 @foreach($yeardata as $key=> $value)
-										<option  value="{{$value->id}}">{{$value->name}}</option>
+										 @foreach($years as $key=> $value)
+										<option  value="{{$value->id}}" {{($editData->year_id==$value->id? "selected":" ")}}>{{$value->name}}</option>
 										 @endforeach
 										 
 									</select>
@@ -148,8 +150,8 @@
 								<div class="controls">
 									<select name="groupe_id" id="select" required class="form-control">
 										<option value="">Selectionner un groupe</option>
-										 @foreach($studentgroupedata as $key=> $value)
-										<option  value="{{$value->id}}">{{$value->name}}</option>
+										 @foreach($groups as $key=> $value)
+										<option  value="{{$value->id}}" {{($editData->groupe_id==$value->id? "selected":" ")}}>{{$value->name}}</option>
 										 @endforeach
 										 
 									</select>
@@ -164,13 +166,13 @@
 								 <div class="form-group">
 		<h5>Profile Image <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="file" name="image" class="form-control" id="image" >  </div>
+	 <input type="file" name="image" class="form-control" id="image"  value="{{$editData['registration_relation_user']['image']}}" >  </div>
 	 </div>
 						     </div>
 						      <div class="col-md-3">
 							<div class="form-group">
 		<div class="controls">
-	<img id="showImage" src="{{ url('upload_image/bernice.jpg') }}" style="width: 100px; height: 100px; border: 1px solid #000000;"> 
+	<img id="showImage" src="{{(!empty($editData['registration_relation_user']['image']))? url('upload_image/student_image/'.$editData['registration_relation_user']['image']):url('upload_image/bernice.jpg')}}" alt="Image Utilisateur" style="width:100px;height:100px"; border:1px solid#00000; style="width: 100px; height: 100px; border: 1px solid #000000;"> 
 
 	 </div>
 	 </div>

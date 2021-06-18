@@ -44,7 +44,7 @@
 							<div class="form-group">
 								<h5>E-mail <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input  type="text" name="email" class="form-control" value="{{$userData->email}}" required data-validation-required-message="Ce champ est obligatoire">
+									<input  type="text" name="email" class="form-control" value="{{$userData->email}}" required data-validation-required-message="Ce champ est obligatoire" disabled>
 									 </div>
 							</div>
 							</div>
@@ -54,12 +54,12 @@
 								<div class="controls">
 									<input  type="text" name="name" class="form-control" value="{{$userData->name}}" required data-validation-required-message="Ce champ est obligatoire"> </div>
 							</div> 
-							<!-- <div class="form-group">
+							 <div class="form-group">
 								<h5>Mot de pass <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input  type="password" name="password" class="form-control" required data-validation-required-message="Ce champ est obligatoire"> 
+									<input  type="password" name="password" class="form-control" required data-validation-required-message="Ce champ est obligatoire" disabled placeholder="Cliquer sur modifier, un code sera automatiquement assigné"> 
 								</div>
-							</div> -->
+							</div>  
 							</div>
 						</div>
 							 

@@ -57,6 +57,7 @@ $route = Route::current()->getName();
             <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
           </ul>
         </li>
+         @if(Auth::user()->role=='Admin')
         <li class="treeview {{($prefix =='/Gestion')?'active':''}}">
           <a href="#">
             <i data-feather="mail"></i> <span>Ajout d'élements</span>
@@ -78,7 +79,7 @@ $route = Route::current()->getName();
              
           </ul>
         </li>
-		
+		@endif
          
 		 
         <li class="header nav-small-cap">Gestion des élèves</li>

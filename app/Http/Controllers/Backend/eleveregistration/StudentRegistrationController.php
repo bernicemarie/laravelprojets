@@ -21,7 +21,11 @@ class StudentRegistrationController extends Controller
       $this->middleware('auth');
   }
     public function RegistrationView(){
-    $data['alldata'] = StudentRegistration::all();
+    $data['classedata']=StudentClass::all();
+    $data['yeardata']=StudentYear::all();
+    $data['year_id']=StudentYear::orderBy('id','desc')->first()->id;
+    $data['class_id']=StudentYear::orderBy('id','desc')->first()->id;
+    $data['alldata'] = StudentRegistration::where('year_id',$data['year_id'])->where('class_id',$data['class_id'])->get();
     return view('backend.student_registration.registration_view',$data);
 
 }
@@ -85,6 +89,7 @@ public function RegistrationAdd(){
            $user->code = $code;
            $user->name = $request->name;
            $user->fname = $request->fname;
+           $user->mname = $request->mname;
            $user->telephone = $request->telephone;
            $user->adresse = $request->adresse;
            $user->sexe = $request->sexe;
@@ -131,4 +136,25 @@ public function RegistrationAdd(){
          
 
     }
+    public function RegistrationRecherche(Request $request){
+    $data['classedata']=StudentClass::all();
+    $data['yeardata']=StudentYear::all();
+    $data['year_id']=$request->year_id;
+    $data['class_id']= $request->class_id;
+    $data['alldata'] = StudentRegistration::where('year_id',$request->year_id)->where('class_id',$request->class_id)->get();
+    return view('backend.student_registration.registration_view',$data);
+
+    }
+
+    public function RegistrationEdit($student_id){
+        $data['years'] = StudentYear::all();
+        $data['classes'] = StudentClass::all();
+        $data['groups'] = StudentGroupe::all();
+        $data['shifts'] = StudentShift::all();
+$data['editData'] = StudentRegistration::with(['registration_relation_user','registration_relation_discount'])->where('student_id',$student_id)->first();
+        // dd($data['editData']->toArray());
+        return view('backend.student_registration.registration_edit',$data);
+
+    }
+
 }

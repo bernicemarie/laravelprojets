@@ -139,6 +139,8 @@ Route::prefix('Enregistrement')->group(function(){
 Route::get('/eleve/enregistrement/liste',[StudentRegistrationController::class,'RegistrationView'])->name('registration.view');
  Route::get('/ajout/enregistrement',[StudentRegistrationController::class,'RegistrationAdd'])->name('registration.add');
 Route::post('/ajouter/enregistrement',[StudentRegistrationController::class,'RegistrationStore'])->name('registration.store');
+Route::get('/Recherche/Elève',[StudentRegistrationController::class,'RegistrationRecherche'])->name('registration.recherche');
+ Route::get('/edition/registration/{student_id}',[StudentRegistrationController::class,'RegistrationEdit'])->name('registration.edit');
  Route::get('/suppression/enregistrement/{id}',[StudentRegistrationController::class,'RegistrationDelete'])->name('registration.delete');
 
      
