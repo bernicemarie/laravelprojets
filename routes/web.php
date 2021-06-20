@@ -15,6 +15,12 @@ use App\Http\Controllers\Backend\gestioneleve\SubjectController;
 use App\Http\Controllers\Backend\gestioneleve\AssignController;
 use App\Http\Controllers\Backend\gestioneleve\DesignationController;
 use App\Http\Controllers\Backend\eleveregistration\StudentRegistrationController;
+use App\Http\Controllers\Backend\eleveregistration\StudentRollController;
+use App\Http\Controllers\Backend\eleveregistration\StudentFeeController;
+use App\Http\Controllers\Backend\eleveregistration\MonthlyFeeController;
+use App\Http\Controllers\Backend\eleveregistration\ExamFeeController;
+use App\Http\Controllers\Backend\employees\EmployeeRegController;
+use App\Http\Controllers\Backend\employees\EmployeeSalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +43,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //logout route
 Route::get('admin/déconnecter',[AdminController::class,'Logout'])->name('admin.logout');
 //End logout route
+Route::group(['middleware'=> 'auth'],function(){
+
+
 //user routes
 Route::prefix('utilisateurs')->group(function(){
     Route::get('/liste',[UserController::class,'UserView'])->name('user.view');
@@ -141,8 +150,67 @@ Route::get('/eleve/enregistrement/liste',[StudentRegistrationController::class,'
 Route::post('/ajouter/enregistrement',[StudentRegistrationController::class,'RegistrationStore'])->name('registration.store');
 Route::get('/Recherche/Elève',[StudentRegistrationController::class,'RegistrationRecherche'])->name('registration.recherche');
  Route::get('/edition/registration/{student_id}',[StudentRegistrationController::class,'RegistrationEdit'])->name('registration.edit');
+  Route::post('/modification/registration/{student_id}',[StudentRegistrationController::class,'RegistrationUpdate'])->name('registration.update');
+  Route::get('/modification/promotion/{student_id}',[StudentRegistrationController::class,'RegistrationPromotion'])->name('registration.promotion');
+  Route::post('/modifier/promotion/{student_id}',[StudentRegistrationController::class,'RegistrationUpdatePromotion'])->name('registration.updatepromotion'); 
+  Route::get('/details/promotion/{student_id}',[StudentRegistrationController::class,'RegistrationDetails'])->name('registration.details');
  Route::get('/suppression/enregistrement/{id}',[StudentRegistrationController::class,'RegistrationDelete'])->name('registration.delete');
-
-     
-});
 //End user Enregistrement routes
+
+ // Student Roll Generate Routes 
+Route::get('/roll/generate/liste', [StudentRollController::class, 'StudentRollView'])->name('roll.view');
+
+Route::get('/reg/getstudents', [StudentRollController::class, 'GetStudents'])->name('student.registration.getstudents');
+
+Route::post('/roll/generate/store', [StudentRollController::class, 'StudentRollStore'])->name('roll.generate.store');
+ // Student Roll Generate Routes 
+
+// Registration Fee Routes 
+Route::get('/reg/fee/view', [StudentFeeController::class, 'RegFeeView'])->name('fee.view');
+
+Route::get('/reg/fee/classwisedata', [StudentFeeController::class, 'RegFeeClassData'])->name('fee.get');
+
+Route::get('/reg/fee/payslip', [StudentFeeController::class, 'RegFeePayslip'])->name('fee.payslip');
+
+// Monthly Fee Routes 
+Route::get('/monthly/fee/view', [MonthlyFeeController::class, 'MonthlyFeeView'])->name('monthly.fee.view');
+
+Route::get('/monthly/fee/classwisedata', [MonthlyFeeController::class, 'MonthlyFeeClassData'])->name('monthly.fee.get');
+
+Route::get('/monthly/fee/payslip', [MonthlyFeeController::class, 'MonthlyFeePayslip'])->name('monthly.fee.payslip');
+
+// Exam Fee Routes 
+Route::get('/exam/fee/view', [ExamFeeController::class, 'ExamFeeView'])->name('exam.fee.view');
+
+Route::get('/exam/fee/classe', [ExamFeeController::class, 'ExamFeeClassData'])->name('exam.fee.get');
+
+Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePayslip'])->name('exam.fee.payslip');   
+});
+/// Employee Registration Routes
+Route::prefix('employees')->group(function(){
+
+Route::get('reg/employee/view', [EmployeeRegController::class, 'EmployeeView'])->name('employee.registration.view');
+
+Route::get('reg/employee/add', [EmployeeRegController::class, 'EmployeeAdd'])->name('employee.registration.add');
+
+Route::post('reg/employee/store', [EmployeeRegController::class, 'EmployeeStore'])->name('store.employee.registration');
+ 
+Route::get('reg/employee/edit/{id}', [EmployeeRegController::class, 'EmployeeEdit'])->name('employee.registration.edit');
+
+Route::post('reg/employee/update/{id}', [EmployeeRegController::class, 'EmployeeUpdate'])->name('update.employee.registration');
+
+Route::get('reg/employee/details/{id}', [EmployeeRegController::class, 'EmployeeDetails'])->name('employee.registration.details');
+ Route::get('/suppression/employee/{id}',[EmployeeRegController::class,'EmployeeDelete'])->name('employee.registration.delete');
+
+ // Employee Salary All Routes 
+Route::get('salary/employee/view', [EmployeeSalaryController::class, 'SalaryView'])->name('employee.salary.view');
+
+Route::get('salary/employee/increment/{id}', [EmployeeSalaryController::class, 'SalaryIncrement'])->name('employee.salary.increment');
+
+Route::post('salary/employee/store/{id}', [EmployeeSalaryController::class, 'SalaryStore'])->name('update.increment.store');
+
+Route::get('salary/employee/details/{id}', [EmployeeSalaryController::class, 'SalaryDetails'])->name('employee.salary.details');
+
+});
+
+});//End Middleware Auth

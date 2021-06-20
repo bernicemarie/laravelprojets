@@ -13,16 +13,16 @@
 		 <!-- Basic Forms -->
 		  <div class="box">
 			<div class="box-header with-border">
-			  <h4 class="box-title">Ajouter un élève</h4>
+			  <h4 class="box-title">Modifier un élève</h4>
 			   
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
-					<form method="post" action="{{route('registration.store')}}" enctype="multipart/form-data">
+					<form method="post" action="{{route('registration.update',$editData->student_id)}}" enctype="multipart/form-data">
 						@csrf
-					  
+					  <input type="hidden" name="id" value="{{ $editData->id }}">
 						<div class="col-12">						
 							 
 		

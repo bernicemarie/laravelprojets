@@ -13,6 +13,7 @@ use App\Models\StudentYear;
 use App\Models\StudentShift;
 use App\Models\StudentRegistration;
 use DB;
+use PDF;
 
 
 class StudentRegistrationController extends Controller
@@ -156,5 +157,94 @@ $data['editData'] = StudentRegistration::with(['registration_relation_user','reg
         return view('backend.student_registration.registration_edit',$data);
 
     }
+     public function RegistrationUpdate(Request $request,$student_id){
+        DB::transaction(function() use($request,$student_id){
+        $user = User::where('id',$student_id)->first();      
+        $user->name = $request->name;
+        $user->fname = $request->fname;
+        $user->mname = $request->mname;
+        $user->telephone = $request->telephone;
+        $user->adresse = $request->adresse;
+        $user->sexe = $request->sexe;
+        $user->dob = date('Y-m-d',strtotime($request->dob));
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            @unlink(public_path('upload_image/student_image/'.$user->image));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload_image/student_image'),$filename);
+            $user['image'] = $filename;
+        }
+        $user->save();
+
+          $assign_student = StudentRegistration::where('id',$request->id)->where('student_id',$student_id)->first();
+           
+          $assign_student->year_id = $request->year_id;
+          $assign_student->class_id = $request->class_id;
+          $assign_student->groupe_id = $request->groupe_id;
+          $assign_student->shift_id = $request->shift_id;
+          $assign_student->save();
+
+          $discount_student = DiscountStudent::where('assign_student_id',$request->id)->first();
+         
+          $discount_student->discount = $request->discount;
+          $discount_student->save();
+
+        });
+
+
+        $notification=['message'=>'Modification effectuée',
+                        'alert-type'=>'success'
+                         ];
+        return Redirect()->route('registration.view')->with($notification);  
+
+    } // End Method 
+
+
+     public function RegistrationPromotion($student_id){
+        $data['years'] = StudentYear::all();
+        $data['classes'] = StudentClass::all();
+        $data['groups'] = StudentGroupe::all();
+        $data['shifts'] = StudentShift::all();
+$data['editData'] = StudentRegistration::with(['registration_relation_user','registration_relation_discount'])->where('student_id',$student_id)->first();
+        // dd($data['editData']->toArray());
+        return view('backend.student_registration.registration_promotion',$data);
+
+    }
+
+    public function RegistrationUpdatePromotion(Request $request,$student_id){
+        DB::transaction(function() use($request,$student_id){
+          $assign_student = new StudentRegistration();
+          $assign_student->student_id = $student_id;
+          $assign_student->year_id = $request->year_id;
+          $assign_student->class_id = $request->class_id;
+          $assign_student->groupe_id = $request->groupe_id;
+          $assign_student->shift_id = $request->shift_id;
+          $assign_student->save();
+          $discount_student = new DiscountStudent();
+          $discount_student->assign_student_id = $assign_student->id;
+          $discount_student->fee_category_id = '1';
+          $discount_student->discount = $request->discount;
+          $discount_student->save();
+        });
+        $notification=['message'=>'Modification effectuée',
+                        'alert-type'=>'success'
+                         ];
+        return Redirect()->route('registration.view')->with($notification);  
+
+
+    } // End Method 
+
+
+     public function RegistrationDetails($student_id){
+   $data['details'] = StudentRegistration::with(['registration_relation_user','registration_relation_discount'])->where('student_id',$student_id)->first();
+
+    $pdf = PDF::loadView('backend.student_registration.registration_details_pdf', $data);
+    $pdf->SetProtection(['copy', 'print'], '', 'pass');
+    return $pdf->stream('document.pdf');
+
+    }
+
 
 }
+

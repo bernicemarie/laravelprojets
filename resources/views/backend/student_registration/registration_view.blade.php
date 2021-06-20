@@ -83,7 +83,7 @@
 				<div class="box-body">
 					<div class="table-responsive">
 						@if(!@search)
-					  <table id="example1" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+					  <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
 						<thead>
 							<tr>
                                 <th width=3%>N°</th>
@@ -115,8 +115,11 @@
 								@if(Auth::user()->role=='Admin')
 								<td>{{$value['registration_relation_user']['code']}}</td>
 								<td>
-                                    <a href="{{route('registration.edit',$value->student_id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('registration.delete',$value->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
+                                      <a href="{{route('registration.edit',$value->student_id)}}" class="btn btn-primary" id="edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('registration.promotion',$value->student_id)}}" class="btn btn-info" id="edit"><i class="fa fa-check"></i></a>
+                                    <a  href="{{route('registration.details',$value->student_id)}}" target="_blank" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                    <a href="{{route('registration.delete',$value->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash-o"></i>
+                                    </a>
                                 </td>
                                 @endif
 								
@@ -127,7 +130,7 @@
 					  </table>
 					  @else
 
-					   <table id="example1" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+					   <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
 						<thead>
 							<tr>
                                 <th width=3%>N°</th>
@@ -149,7 +152,8 @@
 							<tr>
 								<td>{{$key+1}}</td>
 								<td>{{$value['registration_relation_user']['name']}}</td>
-								<td></td>
+								<td>{{$value->roll}}</td>
+								
 							 
 								<td>{{$value['registration_relation_classe']['name']}}</td>
 								<td>{{$value['registration_relation_year']['name']}}</td>
@@ -159,8 +163,11 @@
 								@if(Auth::user()->role=='Admin')
 								<td>{{$value['registration_relation_user']['code']}}</td>
 								<td>
-                                    <a href="{{route('registration.edit',$value->student_id)}}" class="btn btn-info" id="edit">Editer</a>
-                                    <a href="{{route('registration.delete',$value->id)}}" class="btn btn-danger" id="delete">Supprimer</a>
+                                    <a href="{{route('registration.edit',$value->student_id)}}" class="btn btn-primary" id="edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('registration.promotion',$value->student_id)}}" class="btn btn-info" id="edit"><i class="fa fa-check"></i></a>
+                                    <a href="{{route('registration.details',$value->student_id)}}" target="_blank" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                    <a href="{{route('registration.delete',$value->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash-o"></i>
+                                    </a>
                                 </td>
                                 @endif
 								

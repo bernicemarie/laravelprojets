@@ -93,8 +93,26 @@ $route = Route::current()->getName();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('registration.view')}}"><i class="ti-more"></i>Enregistement</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Promotion</a></li>
+            <li><a href="{{route('registration.view')}}"><i class="ti-more"></i>Enregistrement</a></li>
+            <li><a href="{{route('roll.view')}}"><i class="ti-more"></i>Générateur de roll</a></li>
+            <li><a href="{{route('fee.view')}}"><i class="ti-more"></i>Montant à Payer</a></li>
+            <li><a href="{{route('monthly.fee.view')}}"><i class="ti-more"></i>Payement Mensuel</a></li>
+            <li><a href="{{route('exam.fee.view')}}"><i class="ti-more"></i>Examen</a></li>
+             
+          </ul>
+        </li>
+         <li class="treeview {{($prefix =='/employees')?'active':''}}">
+          <a href="#">
+            <i data-feather="grid"></i>
+            <span>Gestion des employés</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('employee.registration.view')}}"><i class="ti-more"></i>Ajouter un employé</a></li>
+            <li><a href="{{route('employee.salary.view')}}"><i class="ti-more"></i>Salaire employé</a></li>
+            
              
           </ul>
         </li>

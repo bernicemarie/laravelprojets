@@ -21,4 +21,11 @@ class StudentRegistration extends Model
      public function registration_relation_user(){
         return $this->belongsTo(User::class,'student_id','id');
     }
+    public function registration_relation_groupe(){
+        return $this->belongsTo(StudentGroupe::class,'groupe_id','id');
+    }
+    
+    public function registration_relation_shift(){
+        return $this->belongsTo(StudentShift::class,'shift_id','id');
+    }
 }
