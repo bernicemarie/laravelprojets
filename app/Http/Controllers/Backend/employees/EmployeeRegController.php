@@ -23,12 +23,12 @@ class EmployeeRegController extends Controller
      public function EmployeeView(){
 
         $data['allData'] = User::where('usertype','Employee')->get();
-        return view('backend.employee.employee_view',$data);
+        return view('backend.employee.add.employee_view',$data);
     }
 
     public function EmployeeAdd(){
         $data['designation'] = Designation::all();
-        return view('backend.employee.employee_add',$data);
+        return view('backend.employee.add.employee_add',$data);
     }
 
      public function EmployeeStore(Request $request){
@@ -111,7 +111,7 @@ class EmployeeRegController extends Controller
 public function EmployeeEdit($id){
         $data['editData'] = User::find($id);
         $data['designation'] = Designation::all();
-        return view('backend.employee.employee_edit',$data);
+        return view('backend.employee.add.employee_edit',$data);
 
     }
 
@@ -153,7 +153,7 @@ public function EmployeeEdit($id){
   public function EmployeeDetails($id){
         $data['details'] = User::find($id);
 
-    $pdf = PDF::loadView('backend.employee.employee_details_pdf', $data);
+    $pdf = PDF::loadView('backend.employee.add.employee_details_pdf', $data);
     $pdf->SetProtection(['copy', 'print'], '', 'pass');
     return $pdf->stream('document.pdf');
 

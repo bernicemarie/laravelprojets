@@ -65,7 +65,17 @@ class EmployeeSalaryController extends Controller
         return view('backend.employee.salary.employee_salary_details',$data);
 
     }
+     public function SalaryDelete($id){
+         $data = User::find($id);
+        @unlink(public_path('upload_image/employee_images/'.$user->image));
+         $data->delete();
+         $notification=['message'=>'Suppression avec succès',
+                        'alert-type'=>'success'
+                         ];
+        return Redirect()->route('employee.salary.view')->with($notification); 
+         
 
+    }
 
 
 }
