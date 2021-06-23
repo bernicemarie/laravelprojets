@@ -12,7 +12,7 @@
 		 <!-- Basic Forms -->
 		  <div class="box">
 			<div class="box-header with-border">
-			  <h4 class="box-title">Edit Attendance </h4>
+			  <h4 class="box-title">Edition Status Employé </h4>
 			  
 			</div>
 			<!-- /.box-header -->
@@ -31,7 +31,7 @@
    	<div class="col-md-6">
 
    		<div class="form-group">
-		<h5>Attendance Date <span class="text-danger">*</span></h5>
+		<h5>Date de Présence <span class="text-danger">*</span></h5>
 		<div class="controls">
 	 <input type="date" name="date" class="form-control" value="{{ $editData['0']['date'] }}">  
 	  </div>		 
@@ -48,12 +48,12 @@
    			<thead>
    				<tr>
    	<th rowspan="2" class="text-center" style="vertical-align: middle;">Sl</th>
-   	<th rowspan="2" class="text-center" style="vertical-align: middle;">Employee List</th>
-   <th colspan="3" class="text-center" style="vertical-align: middle; width: 30%">Attendance Status</th>				
+   	<th rowspan="2" class="text-center" style="vertical-align: middle;">Liste des employés</th>
+   <th colspan="3" class="text-center" style="vertical-align: middle; width: 30%">Status Employé</th>				
    				</tr>
 
    	<tr>
-   		<th class="text-center btn present_all" style="display: table-cell; background-color: #000000">Present</th>
+   		<th class="text-center btn present_all" style="display: table-cell; background-color: #000000">Présent</th>
    		<th class="text-center btn leave_all" style="display: table-cell; background-color: #000000">Leave</th>
    		<th class="text-center btn absent_all" style="display: table-cell; background-color: #000000">Absent</th>
    	</tr>   				
@@ -96,7 +96,8 @@
  
 							 
 						<div class="text-xs-right">
-	 <input type="submit" class="btn btn-rounded btn-info mb-5" value="Update">
+	 <input type="submit" class="btn  btn-primary mb-5" value="Modifier">
+	 <input type="reset" class="btn  btn-danger mb-5" value="Annuler">
 						</div>
 					</form>
 

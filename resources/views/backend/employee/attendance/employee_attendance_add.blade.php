@@ -72,10 +72,10 @@
 <input name="attend_status{{$key}}" type="radio" value="Present" id="present{{$key}}" checked="checked">
  <label for="present{{$key}}">Présent</label>
 
- <input name="attend_status{{$key}}" value="Leave" type="radio" id="leave{{$key}}"  >
+ <input name="attend_status{{$key}}" value="Leave" type="radio" id="leave{{$key}}">
  <label for="leave{{$key}}">Leave</label>
 
- <input name="attend_status{{$key}}" value="Absent"  type="radio" id="absent{{$key}}"  >
+ <input name="attend_status{{$key}}" value="Absent"  type="radio" id="absent{{$key}}">
  <label for="absent{{$key}}">Absent</label>
 				
 			</div>			

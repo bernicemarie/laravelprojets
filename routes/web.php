@@ -23,6 +23,11 @@ use App\Http\Controllers\Backend\employees\EmployeeRegController;
 use App\Http\Controllers\Backend\employees\EmployeeSalaryController;
 use App\Http\Controllers\Backend\employees\EmployeeLeaveController;
 use App\Http\Controllers\Backend\employees\EmployeeAttendanceController;
+use App\Http\Controllers\Backend\employees\MonthlySalaryController;
+use App\Http\Controllers\Backend\marks\MarksController;
+use App\Http\Controllers\Backend\marks\GradeController;
+use App\Http\Controllers\Backend\DefaultController;
+use App\Http\Controllers\Backend\account\StudentsFeeController;
  
 
 /*
@@ -239,8 +244,81 @@ Route::get('attendance/employee/edit/{date}', [EmployeeAttendanceController::cla
 
 Route::get('attendance/employee/details/{date}', [EmployeeAttendanceController::class, 'AttendanceDetails'])->name('employee.attendance.details');
 
+// Employee Monthly Salary All Routes 
+Route::get('monthly/salary/liste', [MonthlySalaryController::class, 'MonthlySalaryView'])->name('employee.monthly.salary');
+
+Route::get('monthly/salary/get', [MonthlySalaryController::class, 'MonthlySalaryGet'])->name('employee.monthly.salary.get');
+
+Route::get('monthly/salary/payslip/{employee_id}', [MonthlySalaryController::class, 'MonthlySalaryPayslip'])->name('employee.monthly.salary.payslip');
 
 
 });
+ 
+ Route::prefix('marks')->group(function(){
+
+Route::get('marks/ajouter', [MarksController::class, 'MarksAdd'])->name('marks.entry.add');
+
+Route::post('marks/entry/store', [MarksController::class, 'MarksStore'])->name('marks.entry.store'); 
+
+Route::get('marks/entry/edit', [MarksController::class, 'MarksEdit'])->name('marks.entry.edit'); 
+
+Route::get('marks/getstudents/edit', [MarksController::class, 'MarksEditGetStudents'])->name('student.edit.getstudents');
+
+Route::post('marks/entry/update', [MarksController::class, 'MarksUpdate'])->name('marks.entry.update');  
+
+// Marks Entry Grade 
+
+Route::get('marks/grade/view', [GradeController::class, 'MarksGradeView'])->name('marks.entry.grade');
+
+Route::get('marks/grade/add', [GradeController::class, 'MarksGradeAdd'])->name('marks.grade.add');
+
+Route::post('marks/grade/store', [GradeController::class, 'MarksGradeStore'])->name('store.marks.grade');
+
+Route::get('marks/grade/edit/{id}', [GradeController::class, 'MarksGradeEdit'])->name('marks.grade.edit');
+
+Route::post('marks/grade/update/{id}', [GradeController::class, 'MarksGradeUpdate'])->name('update.marks.grade');
+Route::get('marks/grade/supp/{id}', [GradeController::class, 'MarksGradeDelete'])->name('delete.marks.grade');
+
+}); 
+ 
+Route::get('marks/getsubject', [DefaultController::class, 'GetSubject'])->name('marks.getsubject');
+
+Route::get('student/marks/getstudents', [DefaultController::class, 'GetStudents'])->name('student.marks.getstudents');
+
+
+/// Account Management Routes  
+Route::prefix('accounts')->group(function(){
+
+Route::get('eleves/fee/liste', [StudentsFeeController::class, 'StudentFeeView'])->name('student.fee.view');
+
+Route::get('student/fee/add', [StudentsFeeController::class, 'StudentFeeAdd'])->name('student.fee.add');
+
+Route::get('student/fee/getstudent', [StudentsFeeController::class, 'StudentFeeGetStudent'])->name('account.fee.getstudent'); 
+
+Route::post('student/fee/store', [StudentsFeeController::class, 'StudentFeeStore'])->name('account.fee.store'); 
+
+// Employee Salary Routes
+Route::get('account/salary/view', [AccountSalaryController::class, 'AccountSalaryView'])->name('account.salary.view');
+
+Route::get('account/salary/add', [AccountSalaryController::class, 'AccountSalaryAdd'])->name('account.salary.add');
+
+Route::get('account/salary/getemployee', [AccountSalaryController::class, 'AccountSalaryGetEmployee'])->name('account.salary.getemployee');
+
+Route::post('account/salary/store', [AccountSalaryController::class, 'AccountSalaryStore'])->name('account.salary.store');
+
+// Other Cost Rotues 
+
+Route::get('other/cost/view', [OtherCostController::class, 'OtherCostView'])->name('other.cost.view');
+
+Route::get('other/cost/add', [OtherCostController::class, 'OtherCostAdd'])->name('other.cost.add');
+
+Route::post('other/cost/store', [OtherCostController::class, 'OtherCostStore'])->name('store.other.cost');
+
+Route::get('other/cost/edit/{id}', [OtherCostController::class, 'OtherCostEdit'])->name('edit.other.cost');
+
+Route::post('other/cost/update/{id}', [OtherCostController::class, 'OtherCostUpdate'])->name('update.other.cost');
+
+}); 
+
 
 });//End Middleware Auth

@@ -41,7 +41,7 @@ public function ExamFeeClassData(Request $request){
          }
          $allStudent = StudentRegistration::with(['registration_relation_discount'])->where($where)->get();
          // dd($allStudent);
-         $html['thsource']  = '<th>SL</th>';
+         $html['thsource']  = '<th>N°</th>';
          $html['thsource'] .= '<th>ID No</th>';
          $html['thsource'] .= '<th>Student Name</th>';
          $html['thsource'] .= '<th>Roll No</th>';
