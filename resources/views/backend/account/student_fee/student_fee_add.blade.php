@@ -103,7 +103,7 @@
 
  			<div class="col-md-3"  >
 
-  <a id="search" class="btn btn-primary" name="search"> Search</a>
+  <a id="search" class="btn btn-primary" name="search">Récherche</a>
 	  
  			</div> <!-- End Col md 3 --> 		
 			</div><!--  end row --> 
@@ -134,7 +134,7 @@
  	 </tbody>
  	</table>
 
- <button type="submit" class="btn btn-primary" style="margin-top: 10px">Submit</button>  
+ <button type="submit" class="btn btn-primary" style="margin-top: 10px">Enregistrer</button>  
  	
  </form>
     </script>

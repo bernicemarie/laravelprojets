@@ -18,7 +18,7 @@
 			 <div class="box">
 				<div class="box-header with-border">
 				  <h3 class="box-title">Student Fee List </h3>
-	<a href="{{ route('student.fee.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add / Edit Student Fee</a>			  
+	<a href="{{ route('student.fee.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Ajout/Edition montant élève</a>			  
 
 				</div>
 				<!-- /.box-header -->
@@ -29,9 +29,9 @@
 			<tr>
 				<th width="5%">SL</th>  
 				<th>ID No</th> 
-				<th>Name </th>
-				<th>Year</th>
-				<th>Class </th>
+				<th>Nom</th>
+				<th>Année</th>
+				<th>Classe </th>
 				<th>Fee Type</th>
 				<th>Amount</th>
 				<th>Date</th> 
