@@ -146,7 +146,30 @@ $route = Route::current()->getName();
           </a>
           <ul class="treeview-menu">
             <li class="{{($route =='student.fee.view')?'active':''}}"><a href="{{route('student.fee.view')}}"><i class="ti-more"></i>Liste des comptes</a></li>
+             <li class="{{($route =='account.salary.view')?'active':''}}"><a href="{{route('account.salary.view')}}"><i class="ti-more"></i>Salaire Employé</a></li>
+              <li class="{{($route =='other.cost.view')?'active':''}}"><a href="{{route('other.cost.view')}}"><i class="ti-more"></i>Autres Prix</a></li>
              
+            
+            
+             
+          </ul>
+        </li>
+        <li class="treeview {{($prefix =='/reports')?'active':''}}">
+          <a href="#">
+            <i data-feather="grid"></i>
+            <span>Gestion des Rapports</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route =='monthly.profit.view')?'active':''}}"><a href="{{route('monthly.profit.view')}}"><i class="ti-more"></i>Rapport Mensuel</a></li>
+               <li class="{{($route =='marksheet.generate.view')?'active':''}}"><a href="{{route('marksheet.generate.view')}}"><i class="ti-more"></i>MarkSheet Elève</a></li>
+              <li class="{{($route =='marksheet.generate.view')?'active':''}}"><a href="{{route('attendance.report.view')}}"><i class="ti-more"></i>Rapport Présence</a></li>
+              <li class="{{($route =='student.result.view')?'active':''}}"><a href="{{route('student.result.view')}}"><i class="ti-more"></i>Résultat Elève</a></li>
+              
+             <li class="{{($route =='student.idcard.view')?'active':''}}"><a href="{{route('student.idcard.view')}}"><i class="ti-more"></i>Carte Elève</a></li>
+              
             
             
              
@@ -155,7 +178,7 @@ $route = Route::current()->getName();
 		<li>
           <a href="{{route('admin.logout')}}">
             <i data-feather="lock"></i>
-			<span>Quitter</span>
+			<span>Quitter l'application</span>
           </a>
         </li> 
         

@@ -28,17 +28,11 @@
 		
 							 <div class="row">
 							<div class="col-md-6">
-								 <div class="form-group">
-								<h5>Rôle <span class="text-danger">*</span></h5>
+								<div class="form-group">
+								<h5>Nom complet <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<select name="usertype" id="select" disabled required class="form-control">
-										 
-										<option value="{{$profile->usertype}}">{{$profile->usertype}}</option>
-										 
-									</select>
-										 
-								</div>
-							</div>
+									<input  type="text" name="name" class="form-control" value="{{$profile->name}}" required > </div>
+							</div> 
 							<div class="form-group">
 								<h5>E-mail <span class="text-danger">*</span></h5>
 								<div class="controls">
@@ -48,14 +42,14 @@
 							</div>
 							<div class="col-md-6">
 								 <div class="form-group">
-								<h5>Nom complet <span class="text-danger">*</span></h5>
+								<h5>Mot de Pass Actuel <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input  type="text" name="name" class="form-control" value="{{$profile->name}}" disabled required data-validation-required-message="Ce champ est obligatoire"> </div>
+									<input id="current_password" type="text" name="current_password" class="form-control" required> </div>
 							</div> 
 							<div class="form-group">
 								<h5>Nouveau mot de pass <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input  type="password" name="password" class="form-control" required data-validation-required-message="Ce champ est obligatoire"> 
+									<input id="password"  type="password" name="password" class="form-control" required> 
 								</div>
 							</div>
 							</div>
@@ -69,10 +63,23 @@
 						
 						 
 						 
-						<div class="text-xs-right">
+						<div class="row">
+						<div class="col-md-6" style="padding-top:20px">
+						<div class="form-group">
 							
 							<input type="reset" class="btn btn-rounded btn-danger mb-" value="Annuler">
 							<input type="submit" class="btn btn-rounded btn-info mb-" value="Modifier">
+
+						</div>
+						</div>
+						<div class="col-md-6">
+						<div class="form-group">
+								<h5>Confirmer mot de pass <span class="text-danger">*</span></h5>
+								<div class="controls">
+									<input id="confirm_password"  type="password" name="confirm_password" class="form-control"> 
+								</div>
+							</div>
+						</div>
 						</div>
 					</form>
 

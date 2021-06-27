@@ -17,8 +17,8 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Student Fee List </h3>
-	<a href="{{ route('student.fee.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Ajout/Edition montant élève</a>			  
+				  <h3 class="box-title">Employee Salary List </h3>
+	<a href="{{ route('account.salary.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Add / Edit Employee Salary</a>			  
 
 				</div>
 				<!-- /.box-header -->
@@ -30,12 +30,9 @@
 				<th width="5%">SL</th>  
 				<th>ID No</th> 
 				<th>Nom</th>
-				<th>Année</th>
-				<th>Classe </th>
-				<th>Fee Type</th>
-				<th>Amount</th>
+				<th>Montant</th>
 				<th>Date</th> 
-				<th>Actions</th> 
+				<th>Action</th> 
 				 
 				 
 			</tr>
@@ -44,15 +41,11 @@
 			@foreach($allData as $key => $value )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $value['student']['id_no'] }}</td>	
-				<td> {{ $value['student']['name'] }}</td>	
-				<td> {{ $value['student_year']['name'] }}</td>	
-				<td> {{ $value['student_class']['name'] }}</td>	
-				<td> {{ $value['fee_category']['name'] }} </td>	
-				<td> {{ $value->amount }}</td>
+				<td> {{ $value['relation_user']['id_no'] }}</td>	
+				<td> {{ $value['relation_user']['name'] }}</td>	
+				<td> {{ $value->amount }}</td>	 
 				<td> {{ date('M Y', strtotime($value->date))  }}</td>
-				<td> <a id="delete" href="{{route('student.fee.delete',$value->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash-o"></i></a></td>
-				 		  
+				 <td> <a id="delete" href="{{route('account.salary.delete',$value->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash-o"></i></a></td>		  
 			</tr>
 			@endforeach
 							 

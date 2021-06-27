@@ -17,8 +17,8 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Student Fee List </h3>
-	<a href="{{ route('student.fee.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Ajout/Edition montant élève</a>			  
+				  <h3 class="box-title">Liste des autres prix </h3>
+	<a href="{{ route('other.cost.add') }}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Ajouter un autre prix</a>			  
 
 				</div>
 				<!-- /.box-header -->
@@ -28,14 +28,11 @@
 						<thead>
 			<tr>
 				<th width="5%">SL</th>  
-				<th>ID No</th> 
-				<th>Nom</th>
-				<th>Année</th>
-				<th>Classe </th>
-				<th>Fee Type</th>
-				<th>Amount</th>
 				<th>Date</th> 
-				<th>Actions</th> 
+				<th>Amount </th>
+				<th>Description</th>
+				<th>Image</th> 
+				<th>Action</th>
 				 
 				 
 			</tr>
@@ -44,14 +41,15 @@
 			@foreach($allData as $key => $value )
 			<tr>
 				<td>{{ $key+1 }}</td>
-				<td> {{ $value['student']['id_no'] }}</td>	
-				<td> {{ $value['student']['name'] }}</td>	
-				<td> {{ $value['student_year']['name'] }}</td>	
-				<td> {{ $value['student_class']['name'] }}</td>	
-				<td> {{ $value['fee_category']['name'] }} </td>	
-				<td> {{ $value->amount }}</td>
-				<td> {{ date('M Y', strtotime($value->date))  }}</td>
-				<td> <a id="delete" href="{{route('student.fee.delete',$value->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash-o"></i></a></td>
+				<td> {{ date('d-m-Y', strtotime($value->date)) }}</td>	
+				<td> {{ $value->amount }}</td>	
+				<td> {{ $value->description }}</td>	 
+				<td>  
+					<img src="{{ (!empty($value->image))? url('upload_image/cost_images/'.$value->image):url('upload_image/bernice.jpg') }}" style="width: 70px; height: 50px;">
+				  </td>
+
+				  <td> <a href="{{ route('edit.other.cost',$value->id ) }}" class="btn btn-info"> <i class="fa fa-edit"></i></a> 
+				    <a id="delete" href="{{route('delete.other.cost',$value->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash-o"></i></a></td>		 
 				 		  
 			</tr>
 			@endforeach

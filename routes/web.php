@@ -28,6 +28,12 @@ use App\Http\Controllers\Backend\marks\MarksController;
 use App\Http\Controllers\Backend\marks\GradeController;
 use App\Http\Controllers\Backend\DefaultController;
 use App\Http\Controllers\Backend\account\StudentsFeeController;
+use App\Http\Controllers\Backend\account\AccountSalaryController;
+use App\Http\Controllers\Backend\account\OtherCostController;
+use App\Http\Controllers\Backend\report\ProfiteController;
+use App\Http\Controllers\Backend\report\MarkSheetController;
+use App\Http\Controllers\Backend\report\ResultReportController;
+use App\Http\Controllers\Backend\report\AttenReportController;
  
 
 /*
@@ -40,6 +46,8 @@ use App\Http\Controllers\Backend\account\StudentsFeeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -296,6 +304,7 @@ Route::get('student/fee/add', [StudentsFeeController::class, 'StudentFeeAdd'])->
 Route::get('student/fee/getstudent', [StudentsFeeController::class, 'StudentFeeGetStudent'])->name('account.fee.getstudent'); 
 
 Route::post('student/fee/store', [StudentsFeeController::class, 'StudentFeeStore'])->name('account.fee.store'); 
+Route::get('élèves/fee/suppression{id}', [StudentsFeeController::class, 'StudentsFeeDelete'])->name('student.fee.delete'); 
 
 // Employee Salary Routes
 Route::get('account/salary/view', [AccountSalaryController::class, 'AccountSalaryView'])->name('account.salary.view');
@@ -305,6 +314,7 @@ Route::get('account/salary/add', [AccountSalaryController::class, 'AccountSalary
 Route::get('account/salary/getemployee', [AccountSalaryController::class, 'AccountSalaryGetEmployee'])->name('account.salary.getemployee');
 
 Route::post('account/salary/store', [AccountSalaryController::class, 'AccountSalaryStore'])->name('account.salary.store');
+Route::get('account/salary/suppression{id}', [AccountSalaryController::class, 'AccountSalaryDelete'])->name('account.salary.delete');
 
 // Other Cost Rotues 
 
@@ -317,8 +327,44 @@ Route::post('other/cost/store', [OtherCostController::class, 'OtherCostStore'])-
 Route::get('other/cost/edit/{id}', [OtherCostController::class, 'OtherCostEdit'])->name('edit.other.cost');
 
 Route::post('other/cost/update/{id}', [OtherCostController::class, 'OtherCostUpdate'])->name('update.other.cost');
+Route::get('other/cost/suppression/{id}', [OtherCostController::class, 'OtherCostDelete'])->name('delete.other.cost');
+
+}); 
+
+/// Report Management All Routes  
+Route::prefix('reports')->group(function(){
+
+Route::get('monthly/profit/view', [ProfiteController::class, 'MonthlyProfitView'])->name('monthly.profit.view');
+
+Route::get('monthly/profit/datewais', [ProfiteController::class, 'MonthlyProfitDatewais'])->name('report.profit.datewais.get');
+
+Route::get('monthly/profit/pdf', [ProfiteController::class, 'MonthlyProfitPdf'])->name('report.profit.pdf');
+
+// MarkSheet Generate Routes 
+Route::get('marksheet/generate/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
+
+Route::get('marksheet/generate/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
+
+
+// Attendance Report Routes 
+Route::get('attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('attendance.report.view');
+
+Route::get('report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('report.attendance.get');
+
+// Student Result Report Routes 
+Route::get('student/result/view', [ResultReportController::class, 'ResultView'])->name('student.result.view');
+
+Route::get('student/result/get', [ResultReportController::class, 'ResultGet'])->name('report.student.result.get');
+
+// Student ID Card Routes 
+Route::get('student/idcard/view', [ResultReportController::class, 'IdcardView'])->name('student.idcard.view');
+
+Route::get('student/idcard/get', [ResultReportController::class, 'IdcardGet'])->name('report.student.idcard.get');
 
 }); 
 
 
+
+
 });//End Middleware Auth
+});//Prevent Back Middleware Auth

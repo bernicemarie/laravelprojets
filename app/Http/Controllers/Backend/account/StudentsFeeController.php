@@ -134,4 +134,15 @@ if($accountstudentfees !=null) {
         } 
 
     } // end method 
+
+     public function StudentsFeeDelete($id){
+        $data = AccountStudentFee::find($id);
+      $data->delete();
+         $notification=['message'=>'Suppression avec succès',
+                        'alert-type'=>'success'
+                         ];
+        return Redirect()->route('student.fee.view')->with($notification); 
+         
+
+    }
 }

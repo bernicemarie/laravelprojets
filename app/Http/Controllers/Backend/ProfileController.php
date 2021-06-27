@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\Models\User;
 
@@ -51,13 +52,37 @@ class ProfileController extends Controller
     }
 
      public function PasswordStore(Request $request){
-         $data = User::find(Auth::user()->id);
+        $hashedPassword = Auth::user()->password;
+        if (Hash::check($request->current_password,$hashedPassword)) {
+            $user = User::find(Auth::id());
+             if ($request->password == $request->confirm_password) {
+            $user->password= Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+             return Redirect()->route('login'); 
+            }
+             else{
+                $notification=['message'=>'Confirmer bien votre nouveau mot de pass',
+                        'alert-type'=>'error'
+                         ];
+           return Redirect()->route('password.view')->with($notification); 
+        }
+            
+
+        }
+        else{
+            $notification=['message'=>'Donner votre mot de pass actuel',
+                        'alert-type'=>'error'
+                         ];
+            return Redirect()->back()->with($notification); 
+        }
+         /*$data = User::find(Auth::user()->id);
          $data->password = bcrypt($request->password) ;
         $data->save();
         $notification=['message'=>'Mot de pass modifié avec succès',
                         'alert-type'=>'success'
-                         ];
-        return Redirect()->route('profile.view')->with($notification); 
+                         ];*/
+       /* return Redirect()->route('profile.view')->with($notification); */
          
 
     }
